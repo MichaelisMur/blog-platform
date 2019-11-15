@@ -1,0 +1,1302 @@
+*{
+    outline: none;
+    font-family: Helvetica;
+}
+body{
+    margin: 0;
+}
+.Main{
+    display: flex;
+    width: 900px;
+    margin: auto;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 100px;
+    /* padding-top: 100px; */
+}
+.MainContainer{
+    background: rgb(255, 255, 255);
+    min-height: 100vh;
+    transition-duration: 0.3s;
+    /* opacity: 0; */
+}
+.Poster{
+    width: 100%;
+    height: 500px;
+    min-height: 90vh;
+    background-image: url(/public/background.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    position: absolute!important;
+    top: 0;
+    font-family: PTC55F;
+}
+.Header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 20;
+    background: rgba(0,0,0,0);
+    transition-duration: 0.5s;
+    user-select: none;
+    top: 0;
+}
+.innerHeader>.left{
+    display: flex;
+    color: #e69719
+}
+.innerHeader>.right{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.innerHeader{
+    width: 948px;
+    display: flex;
+    justify-content: space-between;
+}
+.innerHeader .headerPart{
+    font-size: 18px;
+    padding: 22px 0;
+    margin: 0 24px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+}
+.innerHeader .headerPartUser{
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerPart>.headerLine{
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: white;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+    transition-duration: 0.5s;
+}
+.Main>.posts{
+    width: 520px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.fetching{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Main>.info{
+    display: flex;
+    justify-content: flex-end;
+    width: 300px;
+    z-index: 5;
+    position: absolute;
+    right: 0;
+    top: 100px;
+    bottom: 0;
+}
+.posts>.Post{
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.Post>.post-container{
+    width: 520px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    background: white;
+}
+.Post>.postPicLoading{
+    width: 520px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    background: white;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postPicLoading>img{
+    height: 25px;
+    width: 25px;
+}
+.Post .Picture{
+    position: relative;
+    display: flex;
+    width: 100%;
+    user-select: none;
+}
+.pictureScript{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    opacity: 1;
+}
+.pictureScript>.hiddenText{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.5s;
+    transition-delay: 0.1s;
+}
+.pictureScript>.curtain{
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.5s;
+}
+.Post .post-header{
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 3px 3px 0 0;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    height: 45px;
+}
+.post-header a{
+    color: #c5c4c4;
+    transition-duration: 0.1s;
+}
+.postSettings>a{
+    padding: 0 3px;
+}
+.post-header a:hover{
+    color: black;
+}
+.logTocomment a{
+    color: #c5c4c4;
+}
+.importantContainer a{
+    color: black;
+}
+.importantContainer a:hover{
+    text-decoration: underline;
+    color: inherit!important;
+}
+.logTocomment a:hover{
+    color: black;
+}
+.Picture img{
+    width: 100%;
+}
+.Post .comments{
+    width: 100%;
+    margin: auto;
+    border-radius: 0 0 3px 3px;
+}
+.comments textarea{
+    resize: none!important;
+    width: 100%;
+    border: none;
+    height: 21px!important;
+    padding-left: 10px!important;
+}
+.comments .comms{
+    width: 100%;
+    padding: 0px 15px;
+}
+.comments .commentsContainer{
+    /* padding: 5px 0; */
+    position: relative;
+}
+.addComment{
+    border-top: 1px solid rgb(235, 235, 235);
+    display: flex;
+}
+.commentsContainer .fetchingComment{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(212, 212, 212, 0.3);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postCommentButton{
+    padding: 0 10px;
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+.postCommentButton:active{
+    color: blueviolet;
+}
+.addComment>form{
+    display: flex;
+}
+.comms span{
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+.comments>.restrictedComs{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 84%;
+}
+.comment>.info{
+    width: 100%
+}
+.restrictedImg{
+    width: 34px;
+    padding: 10px 8px;
+}
+.restrictedNews{
+    width: 34px;
+    padding: 16px 9px;
+}
+.restrictedLine{
+    padding: 4px 5px;
+    text-align: center;
+}
+.hiddenTextSign{
+    text-align: center;
+    padding: 0 20px;
+    line-height: 1em;
+    white-space: pre-wrap;
+}
+.logTocomment{
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid rgb(235, 235, 235);
+    font-size: 16px;
+    user-select: none;
+}
+.hiddenPostLine{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    font-size: 16px;
+    padding: 5px 0;
+}
+.postTime{
+    font-weight: bold;
+    user-select: none;
+}
+.hiddenPostLine>*{
+    user-select: none;
+    margin-left: 5px;
+}
+.comms .comment{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.comment>.options{
+    padding-left: 5px;
+    cursor: pointer;
+    width: 30px;
+    user-select: none;
+}
+.comment .curtain{
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
+}
+.comment .comOptions{
+    position: absolute;
+    z-index: 100;
+    right: -140px;
+    top: -3px;
+    margin-top: 0;
+    background: white;
+    border-radius: 5px;
+    width: 120px;
+}
+.comOptions>.optionsContainer{
+    user-select: none;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.optionsContainer>.button{
+    width: 120px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.optionsContainer>.button:hover{
+    background: rgb(238, 238, 238);
+
+}
+/* don't fucking touch this */
+.shit{
+    height: 2000px;
+    background: gray;
+}
+/* don't fucking touch this */
+.HeaderLine{
+    width: 100%;
+}
+.stat{
+    width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+.ui.compact.segment{
+    margin: auto;
+}
+.showMore{
+    color: gray;
+    user-select: none;
+    cursor: pointer;
+}
+.statshit{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.posts>.loading{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 20;
+    /* display: flex; */
+    display: none!important;
+    justify-content: center;
+    align-items: center;
+}
+.loading>.loadingIcon{
+    width: 20vh;
+    height: 20vh;
+    background: url(https://image.flaticon.com/icons/png/512/44/44536.png);
+    background-position: center;
+    background-size: cover;
+    animation:spin 2s linear infinite;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.newForm{
+    width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    padding: 7px;
+    border-radius: 3px;
+}
+.newForm>form>*{
+    width: 100%;
+}
+.newForm>form>textarea{
+    resize: vertical;
+    max-height: 400px;
+    min-height: 40px;
+}
+.dnd{
+    width: 100%;
+    height: 200px;
+    background: white;
+    transition-duration: 0.2s;
+}
+::placeholder{
+    color: grey
+}
+.colorblock{
+    width: 20px;
+    height: 20px;
+}
+.palette{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    align-items: center;
+}
+.newForm>form>input, .newForm>form>textarea{
+    padding: 4px;
+    margin-bottom: 6px;
+    border: 1px solid #c5c4c4;
+    border-radius: 2px;
+}
+.foo img{
+    width: 14px;
+}
+.foo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.foo>img:active{
+    width: 12px;
+    transition-duration: 0.5s;
+    transition-delay: 0.5s;
+}
+.allDone{
+    width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    padding: 7px;
+    border-radius: 3px;
+}
+.allDone>*{
+    width: 100%;
+}
+.important{
+    position: sticky;
+    width: 100%;
+    top: 100px;
+    border-radius: 3px;
+    color: black;
+    height: 350px;
+}
+.important .importantContainer{
+    width: 100%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    /* display: inline-block; */
+}
+.importantLinkTitle{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 6px 0;
+    text-align: center;
+}
+.importantLink{
+    font-size: 15px;
+    padding: 6px 0;
+    text-align: left;
+    text-align: center;
+}
+.important a{
+    color: rgb(#4d92cd);
+}
+.important a:hover{
+    color: rgb(67, 55, 126);
+    /* text-decoration: underline; */
+}
+.importantContainer textarea{
+    width: 100%;
+    resize: none!important;
+    height: 41px;
+}
+.importantShadow{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 12px 30px 22px;
+    border-radius: 3px;
+    background: white;
+}
+.videoContent{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+.videoContainer{
+    height: 300px;
+    width: 100%;
+}
+.audioContainer{
+    width: 480px;
+    height: 36px;
+    padding: 0 10px;
+    margin: auto;
+    background: white;
+    border-radius: 3px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+}
+.audioContainer .play{
+    width: 20px;
+    height: 20px;
+    background: orange;
+}
+.playpause{
+    width: 24px;
+    height: 24px;
+    background: url(/public/play.png);
+    transition-duration: 0.1s;
+    background-position: center;
+    background-size: cover;
+}
+.playContainer{
+    min-width: 28px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.songTitle{
+    padding: 0 3px;
+    width: 100%
+}
+.audioContainer .time{
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+}
+.audioContainer>.time:nth-child(2n + 1){
+    min-width: 10px;
+}
+.audioContainer .downloadAudio{
+    height: 18px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.audioDND{
+    width: 300px;
+    height: 50px;
+    border-radius: 3px;
+    background: white;
+    border: 1px solid lightgray;
+    margin: 15px 0 5px;
+    transition-duration: 0.5s;
+}
+.loginContainer{
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    padding: 7px;
+    border-radius: 3px;
+    user-select: none;
+    margin: 40px auto;
+}
+.loginContainer>form>input{
+    width: 100%;
+}
+.loginContainer>form input::placeholder{
+    color: rgb(190, 190, 190);
+    font-size: 16px;
+}
+.loginContainer>form>input{
+    padding: 10px 12px 8px;
+    margin: 12px 0;
+    /* border: 1px solid rgb(131, 131, 131)!important; */
+    /* border-radius: 2px; */
+    border: 0.5px solid black;
+}
+/* .loginContainer>form> input:focus{
+    border: 1px solid black!important;
+} */
+.loginContainer>form .loginButton{
+    width: 160px;
+    padding: 10px;
+    background: black;
+    /* background: white; */
+    color: white;
+    /* color: black; */
+    /* font-weight: bold; */
+    border: none;
+    /* font-size: 18px; */
+    border-radius: 20px;
+    cursor: pointer;
+}
+.loginError{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+}
+.posterText{
+    width: 900px;
+    height: 60%;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+.posterText .posterTitle{
+    /* color: #a3a3a3; */
+    color: white;
+    font-size: 45px;
+    /* width: 100%; */
+    /* border-top: 1px solid white; */
+    /* border-bottom: 1px solid white; */
+    text-align: center;
+    padding: 20px 10px
+}
+.posterText .posterInfo{
+    /* color: #a3a3a3; */
+    color: white;
+    font-size: 26px;
+    max-width: 80%;
+    line-height: 1em;
+    padding: 10px 0;
+    text-align: center;
+}
+.posterText .posterButton{
+    padding: 10px;
+    display: inline-block;
+    margin-top: 20px;
+    border: 1px solid white;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+.posterText>.wow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.posterButton>.backgroundButton{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    left: -100%;
+    z-index: 0;
+    transition-duration: 0.5s;
+}
+.posterButtonSign{
+    z-index: 1;
+    position: relative;
+    transition-duration: 0.5s;
+}
+.posterButton .curtainButton{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+}
+.postSettings img{
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.postSettings>.PostSettingsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postSettings{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerPartUser svg{
+    padding: 5px;
+    transition-duration: 0.5s;
+}
+.headerPartUser svg:hover{
+    padding: 4px;
+}
+.UserMenu{
+    width: 100%;
+    /* background: white; */
+    position: absolute;
+    top: -25px;
+    right: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+}
+.headerMenuTriangle{
+    z-index: 101;
+}
+.headerMenuTriangle>div{
+    width: 13px;
+    height: 14px;
+    float: right;
+    margin-right: 3px;
+}
+.shitHeader{
+    width: 100%;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid rgb(205, 205, 205);
+    z-index: 30;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+}
+.headerPartUserCurtain{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+.UserMenuButtons{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 24px 0;
+    /* position: relative; */
+}
+.UserMenuButtons:first-child{
+    padding: 10px 24px 8px;
+    border-bottom: 1px solid rgb(241, 241, 241)
+}
+.UserMenuButtons:last-child{
+    padding: 8px 24px 8px;
+}
+.UserMenuStar{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 24px;
+}
+.UserMenuButtonsLine{
+    width: 0;
+    height: 1px;
+    background: black;
+    margin: auto;
+    transition-duration: 0.5s;
+    pointer-events: none;
+}
+.UserMenuButtonsText a{
+    color: black!important;
+}
+.UserMenuButtonsText{
+    display: inline-block;
+    position: relative;
+    text-align: left;
+}
+.headerUserVip{
+    font-size: 10px;
+}
+.VipInfo{
+    height: 24px;
+    width: 24px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    padding: 3px;
+    margin: 0px;
+}
+.headerUsername{
+    font-weight: bold;
+}
+.signedInAs{
+    font-size: 14px;
+}
+.NewsMain{
+    width: 900px;
+    margin: auto;
+    margin-top: 160px;
+    border-radius: 3px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    padding: 20px 10px;
+    min-height: 600px;
+}
+.NewsBlockPage>h1{
+    text-align: center;
+}
+.NewsBlockPage{
+    width: 900px;
+    /* margin: auto; */
+    margin: 160px auto;
+    border-radius: 3px;
+    padding: 20px 10px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.knopfen{
+    display: flex;
+    justify-content: center;
+}
+.knopfen div, .knopfen img{
+    padding: 20px 10px 0;
+    color: black;
+    font-weight: bold;
+}
+.NewsBlockPage>.body{
+    padding: 10px 20px 20px;
+    min-height: 50px;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+.newsBlockPageLine{
+    width: 40%;
+    height: 1px;
+    background: rgb(233, 233, 233);
+    margin: auto;
+}
+.hiddenNewContainer{
+    width: 100%;
+    padding-bottom: 30px;
+    position: relative;
+    user-select: none;
+    border-radius: 3px;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.newContainer{
+    width: 100%;
+    padding-bottom: 30px;
+    position: relative;
+    user-select: none;
+    border-radius: 3px;
+}
+.new>.newText{
+    position: absolute;
+    top: 60px;
+    height: 60px;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.newContainer>.new{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition-duration: 0.5s;
+    position: relative;
+    background: white;
+    border-radius: 3px;
+}
+.new>.newTitle{
+    padding: 0 30px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+.hiddenNewTitle{
+    font-size: 14px;
+    color: #8f8f8f;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+.new>.newLink{
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 60px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+.newLink .arrowDown{
+    width: 30px;
+    height: 30px;
+    background-image: url(/public/arrow.png);
+    background-position: center;
+    background-size: cover;
+}
+.new a, .new a:hover{
+    color: inherit;
+}
+.new .newsLink{
+    display: inline-block;
+    padding-bottom: 10px;
+    font-weight: bold;
+    transition-duration: 0.1s;
+}
+.new .newsBody{
+    height: 100%;
+    max-height: 40px;
+    overflow: hidden;
+    transition-duration: 0.2s;
+    pointer-events: none;
+}
+.newsForm{
+    width: 900px;
+    margin: 120px auto 0;
+    background: white;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 200px;
+}
+.newsForm input, .newsForm textarea{
+    width: 100%;
+    margin-bottom: 14px;
+    padding: 4px;
+    border-radius: 2px;
+    border: 1px solid rgb(228, 225, 225);
+    transition-duration: 0.3s;
+    resize: none;
+}
+.newsForm input:hover, .newsForm textarea:hover{
+    border: 1px solid rgb(204, 204, 204);
+}
+.loadingCurtains{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.newsLoading{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.someSpace{
+    min-height: 90vh;
+    width: 100%;
+}
+.createAcc{
+    border-top: 1px solid black;
+    padding-top: 35px;
+    color: black;
+    transition-duration: 0.3s;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+}
+@media only screen and (max-width: 950px) {
+    .Main>.info{
+        display: none!important;
+    }
+    .Main{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .posts{
+        width: 90%!important;
+    }
+    .post-container{
+        width: 100%!important;
+    }
+    .comment .comOptions{
+        display: none!important;
+    }
+}
+@media only screen and (max-width: 950px) {
+    .posterText{
+        width: 100%;
+    }
+    .posterTitle{
+        line-height: 1em;
+        border-bottom: none!important;
+        font-size: 36px!important;
+    }
+    .posterInfo{
+        font-size: 20px!important;
+        padding: 20px 0!important;
+    }
+}
+.secret a{
+    cursor: none;
+    color: inherit;
+}
+.secret a:hover{
+    color: inherit;
+}
+.secret{
+    background: black;
+    width: 100%;
+    height: 1000px;
+    min-height: 100vh;
+    cursor: none;
+    opacity: 0;
+    transition-duration: 0.3s;
+}
+.secret>.secretLinks{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 35px;
+    color: white;
+    height: 1em;
+    align-items: center;
+    max-width: 1600px;
+    margin: auto;
+    padding: 140px 90px;
+    transition-duration: 1s;
+    /* height: 250px; */
+}
+.secretLinks div{
+    /* width: 300px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    color: white;
+}
+.secretLinks div>span{
+    pointer-events: none;
+    transition-duration: 0.2s;
+}
+.secretDescription{
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 36px;
+    font-weight: normal;
+    color: white;
+    margin: auto;
+    padding: 60px 80px;
+}
+.secretDescriptionText>span{
+    transition-duration: 0.2s;
+    /* color: #213088; */
+}
+.secretDescriptionText{
+    line-height: 1em;
+    font-size: 80px;
+    text-align: justify;
+    transition-duration: 1s;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    
+}
+/* .meBlock{
+    width: 800px;
+    height: 800px;
+    border-radius: 700px;
+    background: red;
+    opacity: 0.5;
+    position: absolute;
+    top: -250px;
+    right: -250px;
+    z-index: 0;
+    transition-duration: 0.7s;
+    position: relative;
+    mix-blend-mode: darken;
+} */
+.secretBack{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    position: relative;
+}
+.secretBack>img{
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    pointer-events: none;
+    transition-duration: 0.5s!important;
+}
+.cursor{
+    position: absolute;
+    top: 0;
+    left: 1px;
+    z-index: 100000;
+    pointer-events: none;
+    mix-blend-mode: difference;
+}
+.cursor>.curs{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: white;
+    transition-duration: 0.2s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.shitfromass{
+    width: 100%;
+    height: 100%;
+    background: rgb(195, 195, 214);
+    border-radius: 100px;
+}
+.bigCurtains{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loadingLogo{
+    width: 40vh;
+    height: 40vh;
+    animation: spin 3s linear infinite;
+    transition-duration: 0.5s;
+    opacity: 0;
+}
+@keyframes spin {
+    0% {
+        transform: scale(1);
+    }
+    25%{
+        transform: scale(1.1) rotate(360deg);
+    }
+    75%{
+        transform: scale(0.8) rotate(360deg); 
+    }
+    100%{
+        transform: scale(1) rotate(720deg);
+    }
+}
+.secretDescriptionText .typeYourShit{
+    animation: blink 0.9s linear infinite;
+    color: white;
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+/* .contactMe{
+    font-size: 50px;
+    color: white;
+    line-height: 1em;
+    width: 100%;
+    padding: 80px;
+    text-align: center;
+} */
+.originalLine>.sometext{
+    width: 40%;
+    font-size: 40px;
+    line-height: 1em;
+    padding: 10px;
+}
+.originalLine{
+    width: 100%;
+    color: white;
+    padding: 80px;
+    font-size: 30px;
+    max-width: 1600px;
+    margin: auto;
+    line-height: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.originalLine>div{
+    width: 40%;
+}
+.originalLine>div:nth-child(2){
+    padding: 20px 0px 20px 20px;
+}
+.expElement{
+    font-size: 26px;
+    padding: 5px 20px;
+    background: rgb(36, 36, 36);
+    display: inline-block;
+    margin: 5px;
+    transition-duration: 0.3s;
+}
+.secretDescriptionWord{
+    padding: 10px;
+}
+.secretDescriptionWord>span{
+    transition-duration: 0.6s;
+    display: inline-block;
+}
+.yoItsMe{
+    color: lightcoral;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
