@@ -241,7 +241,7 @@ export default class Edit extends React.Component{
                                         audioName: e.target.value
                                     })
                                 }}
-                                value={this.state.audioName}
+                                value={decodeURIComponent(this.state.audioName)}
                             />
                             
                             <input type="file" className="audioInput" style={{display: "none"}} 

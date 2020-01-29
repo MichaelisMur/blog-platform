@@ -11,7 +11,7 @@ const Post201 = (props) => {
                         <div className="postTime">{props.header}</div>
                         <div className="postSettings">
                             <PostSettings id={props.post_id} />
-                            <a href={`/public/source/${props.post_id}_${props.img}.jpg`} target="blank">Full size</a>
+                            <a href={`https://source-shitpost-platform.s3.eu-central-1.amazonaws.com/${props.post_id}_${props.img}.jpg`} target="blank">Full size</a>
                         </div>
                 </div>
                 <Picture

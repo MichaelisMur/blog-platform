@@ -8,6 +8,7 @@ import PostSettings from '../PostSettings'
 
 class Post200 extends React.Component{
     constructor(props){
+        console.log(props)
         super(props)
         this.state = {
             loaded: false
@@ -33,12 +34,12 @@ class Post200 extends React.Component{
                             <div className="postSettings">
                                 <PostSettings id={this.props.post_id} />
                                 <VipInfo code={this.props.vip ? this.props.authCode : undefined} />
-                                <a href={`/public/source/${this.props.post_id}_${this.props.img}.jpg`} target="blank"
+                                <a href={`https://source-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.props.post_id}_${this.props.img}.jpg`} target="blank"
                                     onClick={()=>{
                                         fetch("/fullsized", {
                                             method: "POST",
                                             body: JSON.stringify({
-                                                post: `/public/source/${this.props.post_id}_${this.props.img}.jpg`,
+                                                post: `https://source-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.props.post_id}_${this.props.img}.jpg`,
                                             }),
                                             headers: {
                                                 "Content-Type": "application/json"
@@ -60,7 +61,8 @@ class Post200 extends React.Component{
                             post_id={this.props.post_id}
                             picLoaded={this.picLoaded}
                         />
-                        <Audio name={this.props.audio}
+                        <Audio
+                            name={this.props.audio}
                             musicCB={this.props.musicCB}
                             playing={this.props.playing}
                         />

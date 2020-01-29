@@ -1,4 +1,5 @@
 import React from 'react'
+import encodeurl from 'encodeurl'
 
 export default class Audio extends React.Component{
     constructor(props){
@@ -64,7 +65,7 @@ export default class Audio extends React.Component{
             <div style={{width: "100%"}}>
                 <div className="audioContainer">
                     <audio
-                        src={`/public/audio/${this.state.name}.mp3`}
+                        src={`https://audio-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.state.name}.mp3`}
                         onTimeUpdate={this.progress}
                         onLoadedMetadata={this.load}
                         ref={this.myRef}
@@ -92,9 +93,9 @@ export default class Audio extends React.Component{
                         ></div>
                     </div>
                     <div className="songTitle">
-                        {this.state.name}
+                        {decodeURIComponent(this.state.name)}
                     </div>
-                    <a href={`/public/audio/${this.state.name}.mp3`} target="_blank" rel="noopener noreferrer" download={`${this.state.name}.mp3`}>
+                    <a href={`https://audio-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.state.name}.mp3`} target="_blank" rel="noopener noreferrer" download={`${this.state.name}.mp3`}>
                         <img className="downloadAudio" src="/public/down2.png" alt="d" />
                     </a>
                     <div className="time">

@@ -55,7 +55,7 @@ class Picture extends React.Component{
                 }}
                 // -------------
             >
-                <img src={`/public/min/${this.state.post_id}_${this.state.img}.jpg`} alt=""
+                <img src={`https://min-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.state.post_id}_${this.state.img}.jpg`} alt=""
                     onLoad={this.props.picLoaded}
                 ></img>
                 {/* HOVER EFFECT */}

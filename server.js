@@ -1,8 +1,9 @@
 const   fs          = require("fs"),
+        path        = require("path"),
         moment      = require("moment"),
-        path        = require('path'),
         express     = require("express"),
         mongoose    = require("mongoose"),
+        encodeUrl   = require('encodeurl'),
         bodyParser  = require("body-parser"),
         random      = require("randomstring"),
         fileUpload  = require("express-fileupload");
@@ -10,6 +11,8 @@ const   fs          = require("fs"),
 const imagemin = require('imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminPngquant = require('imagemin-pngquant');
+
+const AWS = require('aws-sdk');
 
 const app = express();
 
@@ -21,7 +24,9 @@ try {
 }
 catch (e) {
     config = {
-        db: process.env.DATABASE
+        db: process.env.DATABASE,
+        IAM_USER_KEY: process.env.IAM_USER_KEY,
+        SECRET_ACCESS_KEY: process.env.SECRET_ACCESS_KEY
     }
 }
 
@@ -302,38 +307,79 @@ app.post("/upload", TokenCheck, AdminCheck, (req, res)=>{
             img: random.generate({length: 60, capitalization: "lowercase"}),
             show: false
         }, (err, data)=>{
-
-            fs.writeFile(`public/source/${data._id}_${data.img}.jpg`, req.files.file.data, async (err)=>{
-                    const files = await imagemin([`./public/source/${data._id}_${data.img}.jpg`], {
-                        destination: `./public/min`,
-                        plugins: [
-                            imageminMozjpeg({quality: 50}),
-                            imageminPngquant({
-                                quality: [0.3, 0.5]
-                            })
-                        ]
-                    });
-                    
-                    res.send({
-                        id: data._id,
-                        img: data.img
-                    })
-            });
+            let s3bucket = new AWS.S3({
+                accessKeyId: config.IAM_USER_KEY,
+                secretAccessKey: config.SECRET_ACCESS_KEY,
+                Bucket: "source-shitpost-platform",
+            })
+            s3bucket.createBucket(()=>{
+                fs.writeFile(`public/source/${data._id}_${data.img}.jpg`, req.files.file.data, async (err)=>{
+                        const files = await imagemin([`./public/source/${data._id}_${data.img}.jpg`], {
+                            destination: `./public/min`,
+                            plugins: [
+                                imageminMozjpeg({quality: 50}),
+                                imageminPngquant({
+                                    quality: [0.3, 0.5]
+                                })
+                            ]
+                        });
+                        let sourceContent = fs.readFileSync(`public/source/${data._id}_${data.img}.jpg`);
+                        s3bucket.upload(
+                            {
+                                Bucket: "source-shitpost-platform",
+                                Key: `${data._id}_${data.img}.jpg`,
+                                Body: sourceContent,
+                                ContentType: "image/jpg"
+                            }, (err, sourceResponse)=>{
+                                let minContent = fs.readFileSync(`public/min/${data._id}_${data.img}.jpg`);
+                                s3bucket.upload(
+                                    {
+                                        Bucket: "min-shitpost-platform",
+                                        Key: `${data._id}_${data.img}.jpg`,
+                                        Body: minContent,
+                                        ContentType: "image/jpg"
+                                    }, (err, minResponse)=>{
+                                    res.send({
+                                        uploaded: true,
+                                        id: data._id,
+                                        img: data.img
+                                    })
+                                })
+                            }
+                        )
+                });
+            })
             
         })
     })
 })
 
 app.post("/uploadAudio", TokenCheck, AdminCheck, (req, res)=>{
-    User.findOne({username: req.body.username}, (err, data)=>{
-        Post.findByIdAndUpdate(req.body.id, {
-            audio: req.body.name
-        }, (err, data)=>{
-            fs.writeFile(`public/audio/${req.body.name}.mp3`, req.files.file.data, (err)=>{
-                res.send({
-                    uploaded: true,
+    Post.findByIdAndUpdate(req.body.id, {
+        audio: encodeUrl(req.body.name)
+    }, (err, data)=>{
+        let s3bucket = new AWS.S3({
+            accessKeyId: config.IAM_USER_KEY,
+            secretAccessKey: config.SECRET_ACCESS_KEY,
+            Bucket: "audio-shitpost-platform",
+        })
+        s3bucket.createBucket(()=>{
+            var params = {
+                Bucket: "audio-shitpost-platform",
+                Key: `${req.body.name}.mp3`,
+                Body: req.files.file.data,
+                ContentType: "Content-Type: audio/mpeg3"
+            }
+            s3bucket.upload(params, (err, data)=>{
+                if (err) {
+                    console.log('error in callback');
+                    console.log(err);
+                }
+                    console.log('success');
+                    res.send({
+                        uploaded: true,
+                    })
                 })
-            });
         })
     })
 })
