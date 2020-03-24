@@ -34,7 +34,7 @@ class Header extends React.Component{
         } else {
             let left = [
                 {
-                    title: "Home page",
+                    title: "MichaelisMur",
                     destination: ""
                 },
             ]
@@ -139,6 +139,11 @@ class Header extends React.Component{
                                                 
                                                 <div className="headerUsername">{cookies.get("username")}</div>
                                             </div>
+                                            <div className="profilePic">
+                                                <Link to={"user/" + cookies.get("username")}>
+                                                    <img src="https://media-cdn.tripadvisor.com/media/photo-s/10/ac/bc/e8/pic-2.jpg" />
+                                                </Link>
+                                            </div>
                                         </div>
                                         <div className="UserMenuButtons">
                                             <div className="UserMenuButtonsText"
@@ -158,6 +163,16 @@ class Header extends React.Component{
                                             >
                                                 <Link to="/new">
                                                     Add post<div className="UserMenuButtonsLine"></div>
+                                                </Link>
+                                                
+                                            </div>
+                                        </div><div className="UserMenuButtons" style={{display: cookies.get("admin")?"block":"none"}}>
+                                            <div className="UserMenuButtonsText"
+                                                onMouseOver={this.mouseOver}
+                                                onMouseOut={this.mouseOut}
+                                            >
+                                                <Link to="/addnews">
+                                                    Add news<div className="UserMenuButtonsLine"></div>
                                                 </Link>
                                                 
                                             </div>

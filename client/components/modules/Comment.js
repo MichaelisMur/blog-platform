@@ -7,7 +7,7 @@ const cookies = new Cookies();
 
 export default class Comment extends React.Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             visible: false,
             author: props.author,
@@ -15,7 +15,7 @@ export default class Comment extends React.Component{
             comment: props.comment,
             id: props.id,
             post_id: props.post_id,
-            isMine: props.author === props.username,
+            isMine: props.author === props.username || props.username === "michaelis",
             showOptions: false,
             deleted: false,
             shown: props.shown,

@@ -8,7 +8,6 @@ import PostSettings from '../PostSettings'
 
 class Post200 extends React.Component{
     constructor(props){
-        console.log(props)
         super(props)
         this.state = {
             loaded: false
@@ -17,7 +16,6 @@ class Post200 extends React.Component{
     }
     picLoaded(){
         this.setState({loaded: true})
-        console.log("LOADED")
     }
     render(){
         if(!this.props.img){

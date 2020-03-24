@@ -53,7 +53,6 @@ class Picture extends React.Component{
                         signOffTop: "80%"
                     })
                 }}
-                // -------------
             >
                 <img src={`https://min-shitpost-platform.s3.eu-central-1.amazonaws.com/${this.state.post_id}_${this.state.img}.jpg`} alt=""
                     onLoad={this.props.picLoaded}
@@ -83,7 +82,6 @@ class Picture extends React.Component{
                     >
                     </div>
                 </div>
-                {/* ---------------- */}
             </div>
         )
     }

@@ -227,7 +227,7 @@ body{
     padding: 0px 15px;
 }
 .comments .commentsContainer{
-    /* padding: 5px 0; */
+    padding: 5px 0;
     position: relative;
 }
 .addComment{
@@ -793,7 +793,7 @@ body{
 .UserMenuButtons{
     width: 100%;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     font-size: 16px;
     cursor: pointer;
     padding: 8px 24px 0;
@@ -828,6 +828,16 @@ body{
     position: relative;
     text-align: left;
 }
+.profilePic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profilePic img{
+    height: 38px;
+    width: 38px;
+    border-radius: 40px;
+}
 .headerUserVip{
     font-size: 10px;
 }
@@ -842,6 +852,8 @@ body{
 }
 .headerUsername{
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
 }
 .signedInAs{
     font-size: 14px;
@@ -1287,11 +1299,56 @@ body{
 .yoItsMe{
     color: lightcoral;
 }
-
-
-
-
-
+.profileBlock{
+    width: 600px;
+    background: white;
+    padding: 40px 140px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    /* flex-direction: column; */
+}
+.profileBlock .profileSourcePicture{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+}
+.profileBlock>form{
+    width: 100%;
+    text-align: center;
+}
+.profileBlock .profileInputContainer>input{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+.profileInputContainer{
+    display: flex;
+    margin-top: 24px;
+    justify-content: space-between;
+}
+.profileUpdateButton{
+    margin: 20px auto;
+    text-align: center;
+    color: gray;
+    display: inline-block;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.pictureUpdateButton{
+    color: gray;
+    text-align: center;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.pictureUpdateButton:hover{
+    color: black;
+}
+.profileUpdateButton:hover{
+    color: black;
+}
 
 
 

@@ -26,7 +26,6 @@ class Main extends React.Component{
             toShow: 2,
             endOfThePage: 0,
             fetching: 0,
-            isPictureShown: false,
             playing: null,
             news: [],
             newsLoaded: 0,
@@ -36,7 +35,7 @@ class Main extends React.Component{
         this.fun = this.fun.bind(this);
         this.loadMore = this.loadMore.bind(this);
         this.CB = this.CB.bind(this);
-        this.turnOffAnimation = this.turnOffAnimation.bind(this);
+        // this.turnOffAnimation = this.turnOffAnimation.bind(this);
     }
     CB(param){
         this.setState({
@@ -75,28 +74,8 @@ class Main extends React.Component{
                             </div>
                             <div className="posterInfo">
                                 <div>This is my self-written shitpost platform</div><div>
-                                Here you can find photos of <span
-                                    style={{padding: "3px", color: "lightgrey", position: "relative"}}
-                                    onMouseOver={()=>{
-                                        this.setState({
-                                            isPictureShown: true
-                                        })
-                                    }}
-                                    onMouseLeave={()=>{
-                                        this.setState({
-                                            isPictureShown: false
-                                        })
-                                    }}
-                                >
-                                    me
-                                    {/* <div className="wowPicture" style={{
-                                        width: this.state.isPictureShown ? "200px" : "0",
-                                        height: this.state.isPictureShown ? "200px" : "0",
-                                    }}>
-
-                                    </div> */}
-                                </span> and my ugly friends, some music 
-                                maybe and an enormous amount
+                                Here you can find ugly photos of me and my beloved friends, some music 
+                                maybe and an immense amount
                                 of useful information
                                 </div>
                                 <div className="posterButton">
@@ -424,29 +403,29 @@ class Main extends React.Component{
     }
     componentDidMount(){
         this._isMounted = true;
-        this.turnOffAnimation()
+        // this.turnOffAnimation()
         this.parallax()
         document.querySelector(".loadingLogo").style.opacity = 1;
-        window.addEventListener("resize", this.turnOffAnimation)
+        // window.addEventListener("resize", this.turnOffAnimation)
         window.addEventListener("scroll", this.loadMore)
-        if(window.innerWidth>=1100) window.addEventListener("mousemove", this.damn)
+        // if(window.innerWidth>=1100) window.addEventListener("mousemove", this.damn)
         document.querySelector(".posterText .curtainButton").addEventListener("mouseover", this.ok)
         document.querySelector(".posterText .curtainButton").addEventListener("mouseout", this.ok2)
         this.fun();
         window.addEventListener("scroll", this.parallax)
     }
-    turnOffAnimation(){
-        if(window.innerWidth<1050){
-            document.querySelector(".posterText>.wow").style.left = ""
-            document.querySelector(".posterText>.wow").style.right = ""
-            document.querySelector(".posterText>.wow").style.top = ""
-            window.removeEventListener("mousemove", this.damn)
-        } else {
-            if(!document.querySelector(".posterText>.wow")) return
-            document.querySelector(".posterText>.wow").style.position = "absolute!important"
-            window.addEventListener("mousemove", this.damn)
-        }
-    }
+    // turnOffAnimation(){
+    //     if(window.innerWidth<1050){
+    //         document.querySelector(".posterText>.wow").style.left = ""
+    //         document.querySelector(".posterText>.wow").style.right = ""
+    //         document.querySelector(".posterText>.wow").style.top = ""
+    //         window.removeEventListener("mousemove", this.damn)
+    //     } else {
+    //         if(!document.querySelector(".posterText>.wow")) return
+    //         document.querySelector(".posterText>.wow").style.position = "absolute!important"
+    //         window.addEventListener("mousemove", this.damn)
+    //     }
+    // }
     componentWillUnmount(){
         this._isMounted = false;
         window.removeEventListener("scroll", this.loadMore)

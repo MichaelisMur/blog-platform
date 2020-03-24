@@ -13,6 +13,7 @@ import Edit from './Edit'
 import News from './News'
 import NewsPage from './NewsPage'
 import Bio from './Bio'
+import User from './User'
 import AddNews from './AddNews'
 import EditNewsPage from './EditNews'
 import {Switch, Route} from 'react-router-dom'
@@ -30,6 +31,7 @@ class App extends React.Component{
           <Route path="/Webm" component={Webm} />
           <Route path="/audio" component={Audio} /> */}
           <Route path="/stat" component={Stat} />
+          <Route path="/user/:username" component={User} />
           <Route path="/edit/:id" component={Edit} />
           <Route path="/editnews/:link" component={EditNewsPage} />
           <Route path="/news/:link" component={NewsPage} />
