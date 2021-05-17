@@ -1,1 +1,1 @@
-# shitpost-platform
+# blog-platform
